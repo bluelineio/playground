@@ -3,7 +3,7 @@ compiler:
   - clang
   - gcc
 
-addons:
+#addons:
 
 script:
   # Wraps the compilation with the Build Wrapper to generate configuration (used
