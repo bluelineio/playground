@@ -43,7 +43,7 @@ script:
   # later by the SonarScanner) into the "bw-output" folder
   - mkdir -p build
   - cd build
-  - cmake ${CMAKE_OPTIONS} -G "${CMAKE_GENERATOR}" -DCMAKE_CXX_FLAGS=${CXX_FLAGS} -DBUILD_TESTS=ON ..
+  - cmake ${CMAKE_OPTIONS} -G "${CMAKE_GENERATOR}" -DCMAKE_CXX_FLAGS=${CXX_FLAGS} ..
   - build-wrapper-linux-x86-64 --out-dir bw-output ninja
   #- build-wrapper-linux-x86-64 --out-dir bw-output cmake --build build/
   # And finally run the SonarCloud analysis - read the "sonar-project.properties"
