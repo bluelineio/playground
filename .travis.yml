@@ -10,6 +10,7 @@ addons:
       - cmake
   sonarcloud:
     organization: "bluelineio"
+    secure: "G2+daSxEfGil/ZgvPJHTREZyT4Y/eq55PeZ5mMrNPHMwSrMCCDaX58CZUCpShsJSNbxPXynlPGS2RQ13RYBdESsh3tTvztNcQ0qhiCduRy8EBqNlSrWGYL4w3mgyC/GrNziaOJjdh6ViVZuwIcEsLEpyEp3h4H8s95IHQjv9TZw9pzvQp971XL+yXJXlsjETi1erLJNAEJl8xp8mrdjq0xqIIjFAGDG6bY8dNbjIl6Q2qeA7lENQghfSzVsufkcLDF6Y2v4X2hC+/xmo9bBGlD3IK1fF5TrOJpyIKZzkCVWVxmWxRaDsLo6hgVRm8tOw6kXWUraYF4AkSHzIfKR/+g041W31+eimjMXZuHXXslXhcEgjIJ5lCWUcwFmwSy12uOkTeFPleIOBri/VZE8QbKgES6eZajNIKRECvOHYuzl2+6gEZL6tKXZ50sMA9vjMMQBZ/rBVfojfX+4mNktjQAL+lWK4cLMHKQRt+8VgxlfUKtBu3TZzy8JTA4IfEf3mYDQnVJmCPPHd1192eE7Phu1vXCbAUB5jfKzSymYUTQz6cXJuz+IThrr6GixXPfPSLfpKdbDXMHdGk6gjOg/d574c9Oy+qh61h8rp9ie4ZFuAUjpzG0GmHr98Vctc77rwhsQWrcJTxt+baiw5ojvHXbiSml2xrpvA1bp/nXYWEKU="
 
 script:
   # Wraps the compilation with the Build Wrapper to generate configuration (used
