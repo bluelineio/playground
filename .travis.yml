@@ -1,7 +1,34 @@
 language: c++
-compiler:
-  - clang
-  - gcc
+
+env:
+  global:
+    - CXX_FLAGS="-Wall -pedantic -Werror -Wno-variadic-macros -Wno-long-long -Wno-shadow"
+    - CMAKE_GENERATOR="Unix Makefiles"
+
+matrix:
+  include:
+    - os: linux
+      dist: focal
+      sudo: true
+      compiler:
+        - gcc
+        - clang
+        - ninja-build
+        - cmake
+        - cmake-data
+
+before_install:
+  # Combine global build options with OS/compiler-dependent options
+  - export CMAKE_OPTIONS=${CMAKE_OPTIONS}" "${ENV_CMAKE_OPTIONS}
+  - export CXX_FLAGS=${CXX_FLAGS}" "${ENV_CXX_FLAGS}
+
+install:
+  - if [ "$CXX" = "clang++" ] && [ "$TRAVIS_OS_NAME" = "linux" ]; then export CXX="clang++-3.7" CC="clang-3.7"; fi
+  - echo ${PATH}
+  - echo ${CXX}
+  - echo ${CMAKE_GENERATOR}
+  - ${CXX} --version
+  - ${CXX} -v
 
 addons:
   apt:
@@ -15,7 +42,11 @@ addons:
 script:
   # Wraps the compilation with the Build Wrapper to generate configuration (used
   # later by the SonarScanner) into the "bw-output" folder
-  - build-wrapper-linux-x86-64 --out-dir bw-output cmake --build build/
+  - mkdir -p build
+  - cd build
+  - cmake ${CMAKE_OPTIONS} -G "${CMAKE_GENERATOR}" -DCMAKE_CXX_FLAGS=${CXX_FLAGS} -DBUILD_TESTS=ON ..
+  - ninja
+  #- build-wrapper-linux-x86-64 --out-dir bw-output cmake --build build/
   # And finally run the SonarCloud analysis - read the "sonar-project.properties"
   # file to see the specific configuration
   - sonar-scanner
