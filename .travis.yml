@@ -44,7 +44,7 @@ script:
   - mkdir bw-output
   - cd build
   - cmake ${CMAKE_OPTIONS} -G "${CMAKE_GENERATOR}" -DCMAKE_CXX_FLAGS=${CXX_FLAGS} ..
-  - build-wrapper-linux-x86-64 --out-dir ../bw-output cmake --build .
+  - build-wrapper-linux-x86-64 --out-dir bw-output cmake --build .
   #- build-wrapper-linux-x86-64 --out-dir bw-output cmake --build build/
   # And finally run the SonarCloud analysis - read the "sonar-project.properties"
   # file to see the specific configuration
