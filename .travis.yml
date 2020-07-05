@@ -3,7 +3,8 @@ language: c++
 env:
   global:
     - CXX_FLAGS="-Wall -pedantic -Werror -Wno-variadic-macros -Wno-long-long -Wno-shadow"
-    - CMAKE_GENERATOR="Unix Makefiles"
+    - CMAKE_GENERATOR="Ninja"
+#    - CMAKE_GENERATOR="Unix Makefiles"
 
 matrix:
   include:
@@ -40,12 +41,14 @@ script:
   # Wraps the compilation with the Build Wrapper to generate configuration (used
   # later by the SonarScanner) into the "bw-output" folder
   - mkdir -p build
+  - mkdir bw-output
   - cd build
   - cmake ${CMAKE_OPTIONS} -G "${CMAKE_GENERATOR}" -DCMAKE_CXX_FLAGS=${CXX_FLAGS} ..
-  - build-wrapper-linux-x86-64 --out-dir bw-output cmake --build .
+  - build-wrapper-linux-x86-64 --out-dir ../bw-output cmake --build .
   #- build-wrapper-linux-x86-64 --out-dir bw-output cmake --build build/
   # And finally run the SonarCloud analysis - read the "sonar-project.properties"
   # file to see the specific configuration
+  - cd ..
   - sonar-scanner
 
 cache:
