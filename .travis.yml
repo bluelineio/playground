@@ -3,7 +3,7 @@ language: c++
 env:
   global:
     - CXX_FLAGS="-Wall -pedantic -Werror -Wno-variadic-macros -Wno-long-long -Wno-shadow"
-    - CMAKE_GENERATOR="Unix Makefiles"
+    - CMAKE_GENERATOR="Ninja"
 
 matrix:
   include:
@@ -49,3 +49,7 @@ script:
   # And finally run the SonarCloud analysis - read the "sonar-project.properties"
   # file to see the specific configuration
   - sonar-scanner -Dsonar.cfamily.build-wrapper-output=bw-output
+
+cache:
+  directories:
+    - '$HOME/.sonar/cache'
