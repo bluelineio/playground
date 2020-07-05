@@ -3,7 +3,9 @@ compiler:
   - clang
   - gcc
 
-#addons:
+addons:
+  sonarcloud:
+    organization: "bluelineio"
 
 script:
   # Wraps the compilation with the Build Wrapper to generate configuration (used
@@ -11,4 +13,4 @@ script:
   - build-wrapper-linux-x86-64 --out-dir bw-output cmake --build build/
   # And finally run the SonarCloud analysis - read the "sonar-project.properties"
   # file to see the specific configuration
-#  - sonar-scanner
+  - sonar-scanner
